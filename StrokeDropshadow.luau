@@ -6,6 +6,8 @@ export type config = {
 	maxTransparency : number,
 	layers : number,
 	position : Enum.BorderStrokePosition,
+	SizingMode : Enum.StrokeSizingMode,
+	Offset : UDim?,
 	childen : {Instance?}?
 }
 
@@ -21,6 +23,8 @@ return function(config : config, parent : Instance) : {UIStroke}
 	local position = config.position
 	local color = config.color
 	local children = config.childen
+	local SizingMode = config.SizingMode
+	local Offset = config.Offset
 	
 	local strokes = {}
 	
@@ -31,7 +35,11 @@ return function(config : config, parent : Instance) : {UIStroke}
 		
 		local stroke = newStroke()
 		
-		stroke.StrokeSizingMode = Enum.StrokeSizingMode.ScaledSize
+		if Offset then
+			stroke.BorderOffset = Offset
+		end
+		
+		stroke.StrokeSizingMode = SizingMode
 		stroke.Color = color
 		stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 		stroke.LineJoinMode = Enum.LineJoinMode.Round
