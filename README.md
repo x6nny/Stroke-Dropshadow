@@ -1,6 +1,6 @@
 # Example:
 ```luau
-local strokes = StrokeGlow({
+local strokes = StrokeDropshadow({
 	layers = 7,
 	maxThickness = 0.1,
 	minTransparency = 0.5,
